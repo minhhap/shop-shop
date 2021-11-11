@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
-
-const categorySchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  }
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mernshopping', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 
-const Category = mongoose.model('Category', categorySchema);
-
-module.exports = Category;
+module.exports = mongoose.connection;
